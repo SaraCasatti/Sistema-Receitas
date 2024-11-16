@@ -2,12 +2,12 @@ create database receitas;
 use receitas;
 
 create table usuarios(
-id int primary key,
-usuario varchar(80) not null,
-senha varchar(80));
+id int primary key auto_increment,
+usuario varchar(80) not null unique,
+senha varchar(80) not null);
 
 create table receitas(
-id int primary key,
+id int primary key auto_increment,
 id_usuario int,
 categoria varchar(80),
 modo_preparo varchar(5000), 
@@ -18,7 +18,7 @@ foreign key (id_usuario) references usuarios(id),
 check (categoria = 'Doce' or categoria = 'Salgado'));
 
 create table ingredientes(
-id int primary key,
+id int primary key auto_increment,
 nome varchar(80),
 lactose varchar(3) check (lactose = 'sim' or lactose = 'nao'),
 glutem varchar(3) check (glutem = 'sim' or glutem = 'nao'),
