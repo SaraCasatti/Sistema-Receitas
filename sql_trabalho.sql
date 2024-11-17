@@ -9,6 +9,7 @@ senha varchar(80) not null);
 create table receitas(
 id int primary key auto_increment,
 id_usuario int,
+nome varchar(30),
 categoria varchar(80),
 modo_preparo varchar(5000), 
 tempo int,
