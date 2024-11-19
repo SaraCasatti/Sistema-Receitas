@@ -34,3 +34,9 @@ check (unidade in ('ml','g', 'colher de sopa', 'colher de sobremesa')),
 foreign key (id_receitas) references receitas(id),
 foreign key (id_ingredientes) references ingredientes(id),
 primary key (id_receitas, id_ingredientes));
+
+
+insert into ingredientes(nome, lactose, glutem, origem_animal) values ("leite condensado", "sim", "nao", "sim");
+insert into ingredientes(nome, lactose, glutem, origem_animal) values ("chocolate em pó", "sim", "sim", "sim");
+insert into ingredientes(nome, lactose, glutem, origem_animal) values ("leite condensado", "sim", "sim", "nao");
+insert into ingredientes(nome, lactose, glutem, origem_animal) values ("manteiga", "sim", "nao", "sim");
