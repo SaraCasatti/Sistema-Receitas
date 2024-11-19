@@ -77,4 +77,30 @@ async function mostrarIngredientes() {
     return resp[0]
 }
 
-module.exports = {insereUsuario, deletaUsuario, mostraUsuario, mostraUsuarioSenha, alterarSenha, mostrarIngredientes}
+//receitas
+async function mostrarReceitas() {
+    let conn = await conecta()
+    let sql = "select * from receitas"
+    let resp = await conn.query(sql)
+    console.log(resp[0])
+    return resp[0]
+}
+
+async function mostrarReceitasPorUsuario(id) {
+    let conn = await conecta()
+    let sql = "select * from receitas where id_usuario = ?"
+    let resp = await conn.query(sql, [id])
+    console.log(resp[0])
+    return resp[0]
+}
+
+async function inserirReceita(receita) {
+    let conn = await conecta()
+    let sql = "insert into receitas(id_usuario, nome, categoria, modo_preparo, tempo) values (?, ?, ?, ?, ?)"
+    let resp = await conn.query(sql, [receita.id_usuario, receita.nome, receita.categoria, receita.modo_preparo, receita.tempo])
+    console.log(resp[0])
+    return resp[0]
+}
+
+module.exports = {insereUsuario, deletaUsuario, mostraUsuario, mostraUsuarioSenha, alterarSenha, mostrarIngredientes, 
+mostrarReceitas, mostrarReceitasPorUsuario, inserirReceita}

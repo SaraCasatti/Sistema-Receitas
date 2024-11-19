@@ -31,8 +31,8 @@ router.post("", async (req, res) => {
     //cadastra o usuario
     const usuario = req.body.usuario
     const senha = req.body.senha
-    resp = await banco.insereUsuario(usuario, senha)
-    if(resp == 1) {
+    let resp = await banco.insereUsuario(usuario, senha)
+    if(resp) {
         return res.status(201).send("usuario adicionado")
     } else {
         return res.status(400).send("erro")
