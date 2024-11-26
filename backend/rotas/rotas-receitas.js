@@ -19,9 +19,9 @@ router.post("", async (req, res) => {
     const receita = req.body
     let resp = await banco.inserirReceita(receita)
     if (resp) {
-        return res.send(201).send("receita adicionada")
+        return res.sendStatus(201).send("receita adicionada")
     } else {
-        return res.send(400).send("erro")
+        return res.sendStatus(400).send("erro")
     }
 })
 
@@ -29,9 +29,9 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id
     let resp = await banco.deletarReceita(id)
     if(resp) {
-        return res.send(204).send("receita deletada")
+        return res.status(204).send("receita deletada")
     } else {
-        return res.send(404).send("erro")
+        return res.status(404).send("erro")
     }
 })
 
@@ -43,7 +43,7 @@ router.put("/:id", async (req, res) => {
     if(resp){
         return res.status(204).send("receita atualizada")
     } else {
-        return res.send(404).send("erro")
+        return res.status(404).send("erro")
     }
 })
 

@@ -9,9 +9,9 @@ router.get("/:usuario", async (req, res) => {
     resp = await banco.mostraUsuario(usuario)
     console.log(resp)
     if(resp != undefined) {
-        return res.status(200).send("usuario existe")
+        return res.sendStatus(200).send("usuario existe")
     } else {
-        return res.status(404).send("usuario inexistente")
+        return res.sendStatus(404).send("usuario inexistente")
     }
 })
 
@@ -21,9 +21,9 @@ router.get("/:usuario/:senha", async (req, res) => {
     const senha = req.params.senha
     let senhaOficial = await banco.mostraUsuarioSenha(usuario)
     if (senha == senhaOficial) {
-        return res.status(200).send("usuario logado")
+        return res.sendStatus(200).send("usuario logado")
     } else {
-        return res.status(400).send("senha ou usuario errado")
+        return res.sendStatus(400).send("senha ou usuario errado")
     }
 })
 
@@ -33,9 +33,9 @@ router.post("", async (req, res) => {
     const senha = req.body.senha
     let resp = await banco.insereUsuario(usuario, senha)
     if(resp) {
-        return res.status(201).send("usuario adicionado")
+        return res.sendStatus(201).send("usuario adicionado")
     } else {
-        return res.status(400).send("erro")
+        return res.sendStatus(400).send("erro")
     }
 })
 
@@ -44,9 +44,9 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id
     resp = await banco.deletaUsuario(id)
     if(resp == 1) {
-        return res.status(204).send("usuario deletado")
+        return res.sendStatus(204).send("usuario deletado")
     } else {
-        return res.status(404).send("erro")
+        return res.sendStatus(404).send("erro")
     }
 })
 
@@ -56,9 +56,9 @@ router.put("/:usuario", async (req, res) => {
     const senha = req.body.senha
     resp = await banco.alterarSenha(usuario, senha)
     if(resp == 1){
-        return res.status(204).send("senha alterada")
+        return res.sendStatus(204).send("senha alterada")
     } else {
-        return res.status(404).send("erro")
+        return res.sendStatus(404).send("erro")
     }
 })
 

@@ -19,9 +19,9 @@ router.post("", async (req, res) => {
     let resIng = req.body
     let resp = await banco.insereReceitaIngrediente(resIng)
     if(resp){
-        return res.status(200).send("receita_ingredientes adicionado")
+        return res.sendStatus(200).send("receita_ingredientes adicionado")
     } else {
-        return res.status(400).send("erro")
+        return res.sendStatus(400).send("erro")
     }
 })
 
@@ -29,6 +29,16 @@ router.delete("/:id_receitas/:id_ingredientes", async (req, res) => {
     const id_receitas = req.params.id_receitas
     const id_ingredientes = req.params.id_ingredientes
     let resp = await banco.deletaReceitaIngrediente(id_receitas, id_ingredientes)
+    if(resp){
+        return res.status(204).send("receita_ingrediente deletado")
+    } else {
+        return res.status(404).send("erro")
+    }
+})
+
+router.delete("/:id_receitas", async (req, res) => {
+    const id_receitas = req.params.id_receitas
+    let resp = await banco.deletaReceitaIngredientePorReceita(id_receitas)
     if(resp){
         return res.status(204).send("receita_ingrediente deletado")
     } else {
