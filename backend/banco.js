@@ -145,7 +145,7 @@ async function mostraReceitaIngredientes(){
 
 async function mostraIngredientesPorReceita(id_receita) {
     let conn = await conecta()
-    let sql = " select * from ingredientes where id = (select id_ingredientes from receita_ingredientes where id_receitas = ?)"
+    let sql = "select i.id id_ingrediente, i.nome ingrediente, ri.id_receitas id_receita, ri.quantidade quantidade, ri.unidade unidade from ingredientes i inner join receita_ingredientes ri on i.id = ri.id_ingredientes where id_receitas = ?"
     let resp = await conn.query(sql, [id_receita])
     console.log(resp[0])
     return resp[0]
