@@ -65,6 +65,10 @@ function PagUser(props) {
             }
         }
 
+        function voltar() {
+            setAtualizacao("")
+        }
+
         return (
             <>
                 <div className ="box">
@@ -81,6 +85,7 @@ function PagUser(props) {
                         </div>
 
                         <input type="submit" value="Submit" className='button is-success is-outlined'/>
+                        <button onClick = {voltar} className ="button is-success is-outlined is-normal mx-1">Voltar</button>
                     </div>
                 </form>
                 </div>
