@@ -19,9 +19,9 @@ router.post("", async (req, res) => {
     let resIng = req.body
     let resp = await banco.insereReceitaIngrediente(resIng)
     if(resp){
-        return res.sendStatus(200).send("receita_ingredientes adicionado")
+        return res.status(200).send("receita_ingredientes adicionado")
     } else {
-        return res.sendStatus(400).send("erro")
+        return res.status(400).send("erro")
     }
 })
 

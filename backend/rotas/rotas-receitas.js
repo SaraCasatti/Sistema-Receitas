@@ -19,9 +19,9 @@ router.post("", async (req, res) => {
     const receita = req.body
     let resp = await banco.inserirReceita(receita)
     if (resp) {
-        return res.sendStatus(201).send("receita adicionada")
+        return res.status(201).send("receita adicionada")
     } else {
-        return res.sendStatus(400).send("erro")
+        return res.status(400).send("erro")
     }
 })
 

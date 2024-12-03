@@ -14,7 +14,7 @@ async function conecta() {
 //usuarios
 async function mostraUsuario(usuario){
     let conn = await conecta()
-    let sql = "select usuario from usuarios where usuario = ?"
+    let sql = "select usuario, id from usuarios where usuario = ?"
     let resposta = await conn.query(sql, [usuario])
     console.log(resposta[0][0]);
   //o retorno tem 2 arrays (um dentro do outro). Queremos o primeiro deles.
@@ -25,7 +25,6 @@ async function mostraUsuarioSenha(usuario){
     let conn = await conecta()
     let sql = "select senha from usuarios where usuario = ?"
     let resposta = await conn.query(sql, [usuario])
-    console.log(resposta[0][0].senha)
     return resposta[0][0].senha
 }
 
