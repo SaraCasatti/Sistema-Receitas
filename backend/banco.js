@@ -202,17 +202,25 @@ async function buscaPorCategoria(cat) {
 
 async function buscaPorIngrediente(id_ing) {
     let conn = await conecta()
-    let sql = "select * from receitas where id = (select id_receitas from receita_ingredientes where id_ingredientes = ?)"
+    let sql = "select * from receitas where id in (select id_receitas from receita_ingredientes where id_ingredientes = ?)"
     let resp = await conn.query(sql, [id_ing])
     console.log(resp[0])
     return resp[0]
 }
 
-async function buscaPorEspecificacoes(esp, op) {
+async function buscaPorEspecificacoes(esp) {
     let conn = await conecta()
-    let sql = "select * from receitas where id = (select id_receitas from receita_ingredientes where id_ingredientes = (select id from ingredientes where ? = ?))"
-    let resp = await conn.query(sql, [esp, op])
-    console.log(resp[0])
+    let sql
+    if(esp == "lactose") {
+        sql = "select * from receitas where id in (select id_receitas from receita_ingredientes where id_ingredientes in (select id from ingredientes where lactose = 'nao'))"
+    } else if (esp == "glutem") {
+        sql = "select * from receitas where id in (select id_receitas from receita_ingredientes where id_ingredientes in (select id from ingredientes where glutem = 'nao'))"
+    } else {
+        sql = "select * from receitas where id in (select id_receitas from receita_ingredientes where id_ingredientes in (select id from ingredientes where origem_animal = 'nao'))"
+    }
+    
+    let resp = await conn.query(sql, [esp])
+    console.log(esp)
     return resp[0]
 }
 

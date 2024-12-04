@@ -40,3 +40,4 @@ insert into ingredientes(nome, lactose, glutem, origem_animal) values ("leite co
 insert into ingredientes(nome, lactose, glutem, origem_animal) values ("chocolate em pó", "sim", "sim", "sim");
 insert into ingredientes(nome, lactose, glutem, origem_animal) values ("leite condensado", "sim", "sim", "nao");
 insert into ingredientes(nome, lactose, glutem, origem_animal) values ("manteiga", "sim", "nao", "sim");
+insert into ingredientes(nome, lactose, glutem, origem_animal) values ("nao tudo teste", "nao", "nao", "nao");

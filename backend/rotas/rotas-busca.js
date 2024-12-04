@@ -5,6 +5,7 @@ const banco = require("../banco")
 
 router.get("/nome/:nome", async (req, res) => {
     //busca por nome
+    console.log("nome", req.params.nome)
     const nome = req.params.nome
     let resp = await banco.buscaPorNome(nome)
     return res.status(200).json(resp)
@@ -20,7 +21,8 @@ router.get("/categoria/:cat", async (req, res) => {
 router.get("/ingrediente/:id_ing", async (req, res) => {
     //busca por 1 ingrediente
     const id_ing = req.params.id_ing
-    let resp = banco.buscaPorIngrediente(id_ing)
+    let resp = await banco.buscaPorIngrediente(id_ing)
+    console.log(resp)
     return res.status(200).json(resp)
 })
 
@@ -31,12 +33,11 @@ router.get("/ingredientes", async (req, res) => {
     return res.status(200).json(ingredientes)
 })
 
-router.get("/especificacoes/:esp/:op", async (req, res) => {
+router.get("/especificacoes/:esp", async (req, res) => {
     //esp = especificacoes (lactose, glutem e origem animal)
     //op = opcoes (sim ou nao)
     const esp = req.params.esp
-    const op = req.params.op
-    let resp = await banco.buscaPorEspecificacoes(esp, op)
+    let resp = await banco.buscaPorEspecificacoes(esp)
     return res.status(200).json(resp)
 })
 

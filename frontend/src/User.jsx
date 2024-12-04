@@ -73,8 +73,8 @@ function LoginCadastro(props) {
             props.setLc(-1)
         } else {
             let usu = await resp.json()
-            let resp2 = await fetch(`http://localhost:8000/usuarios/${usuario.usuario}/${usuario.senha}`)
-            if(resp2.status == 200) {
+            let resp2 = await fetch(`http://localhost:8000/usuarios/checar/${usuario.usuario}/${usuario.senha}`)
+            if(resp2.status == 200 ) {
                 console.log("logado")
                 props.setUsuario(usu.usuario)
                 props.setId(usu.id)

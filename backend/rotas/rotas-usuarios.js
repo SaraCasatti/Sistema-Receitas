@@ -15,17 +15,18 @@ router.get("/:usuario", async (req, res) => {
     }
 })
 
-router.get("/:usuario/:senha", async (req, res) => {
+router.get("/checar/:usuario/:senha", async (req, res) => {
     //loga o usuario
     const usuario = req.params.usuario
     const senha = req.params.senha
     let senhaOficial = await banco.mostraUsuarioSenha(usuario)
     console.log(senha, senhaOficial)
-    if (senha == senhaOficial) {
+    if (senha === senhaOficial) {
+        console.log("entrei")
         return res.status(200).send("usuario logado")
-    } else {
-        return res.status(400).send("senha ou usuario errado")
-    }
+    } 
+    return res.status(400).send("senha ou usuario errado")
+    
 })
 
 router.post("", async (req, res) => {

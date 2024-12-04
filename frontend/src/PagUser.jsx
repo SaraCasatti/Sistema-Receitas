@@ -131,7 +131,7 @@ function PagUser(props) {
                     {addReceita}
                 </div>
                 :
-                <ReceitasUsuario id = {id} />
+                <ReceitasUsuario id = {id} setDados = {props.setDados} dados = {props.dados} setVerReceita = {setVerReceita}/>
             }
             
         </>

@@ -16,6 +16,8 @@ function App() {
   //true = home
   //false = usuario
 
+  const [busca, setBusca] = useState("") //se busca - vai para o componente específico
+
   async function buscaDados() {
     const res = await fetch("http://localhost:8000/receitas")
     const dado = await res.json()
@@ -34,8 +36,10 @@ function App() {
 
   return (
     <>
-      <NavBar mudaPagina = {setHome} pagina = {home}/>
+      <NavBar mudaPagina = {setHome} pagina = {home} setBusca = {setBusca} setDados = {setDados} atualizaLikesDislikes = {atualizaLikesDislikes}/>
+      {busca}
 
+      <hr />
       {home ? 
       <div className='content'>
         {
