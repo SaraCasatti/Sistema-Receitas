@@ -18,8 +18,8 @@ router.get("/:idUsuario", async (req, res) => {
 router.post("", async (req, res) => {
     const receita = req.body
     let resp = await banco.inserirReceita(receita)
-    if (resp) {
-        return res.status(201).send("receita adicionada")
+    if (resp.affectedRows == 1) {
+        return res.status(201).json(resp)
     } else {
         return res.status(400).send("erro")
     }

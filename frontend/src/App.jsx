@@ -40,12 +40,12 @@ function App() {
       <div className='content'>
         {
           dados.map((receita) => {
-            return <Receita receita = {receita} key = {receita.id} atualizaLikesDislikes = {atualizaLikesDislikes}/>
+            return <Receita setDados = {setDados} receita = {receita} key = {receita.id} atualizaLikesDislikes = {atualizaLikesDislikes}/>
           })
         }
       </div> :
       <div>
-        <User usuario = {usuario} setUsuario = {setUsuario} id = {id_usuario} setId = {setId_usuario} lc = {lc} setLc = {setLc}/>
+        <User dados = {dados} setDados = {setDados} usuario = {usuario} setUsuario = {setUsuario} id = {id_usuario} setId = {setId_usuario} lc = {lc} setLc = {setLc}/>
       </div>
       }
     </>

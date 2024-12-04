@@ -17,6 +17,7 @@ router.get("/:id_receita", async (req, res) => {
 
 router.post("", async (req, res) => {
     let resIng = req.body
+    console.log(resIng)
     let resp = await banco.insereReceitaIngrediente(resIng)
     if(resp){
         return res.status(200).send("receita_ingredientes adicionado")

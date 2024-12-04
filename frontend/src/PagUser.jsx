@@ -1,12 +1,24 @@
 import { useState } from 'react';
+import AddEditReceita from './AddEditReceita';
+import ReceitasUsuario from './ReceitasUsuario';
 
 function PagUser(props) {
     const [atualizacao, setAtualizacao] = useState("")
+    const [addReceita, setAddReceita] = useState("")
+    const [verReceita, setVerReceita] = useState(false)
     let usuario = props.usuario
     let id = props.id
 
     function deslog() {
         props.setLc(-1)
+    }
+
+    function add(){
+        setAddReceita(<AddEditReceita setDados = {props.setDados} dados = {props.dados} id = {id} setAddReceita = {setAddReceita}/>)
+    }
+
+    function ver() {
+        setVerReceita(true)
     }
 
     async function deletar(event) {
@@ -96,23 +108,32 @@ function PagUser(props) {
 
     return(
         <>
-            <div className = "is-flex  is-align-self-center  is-flex-direction-column is-justify-content-center is-align-content-center is-align-items-center">
-            <h1 className='title'>Usuario: {usuario}</h1>
-            <div className = "mt-2 is-flex  is-align-self-center  is-flex-direction-column is-justify-content-center is-align-content-center is-align-items-center">
-                <div className = "is-flex  is-align-self-center  is-flex-direction-row is-justify-content-center is-align-content-center is-align-items-center">
-                    <button className ="button is-success is-normal mx-1">ver minhas receitas</button>
-                    <button className ="button is-primary is-normal mx-1">criar receita</button>
-                </div>
+            {
+                verReceita == false ?
+                <div>
+                    <div className = "is-flex  is-align-self-center  is-flex-direction-column is-justify-content-center is-align-content-center is-align-items-center">
+                    <h1 className='title'>Usuario: {usuario}</h1>
+                    <div className = "mt-2 is-flex  is-align-self-center  is-flex-direction-column is-justify-content-center is-align-content-center is-align-items-center">
+                        <div className = "is-flex  is-align-self-center  is-flex-direction-row is-justify-content-center is-align-content-center is-align-items-center">
+                            <button onClick = {ver} className ="button is-success is-normal mx-1">ver minhas receitas</button>
+                            <button onClick = {add} className ="button is-primary is-normal mx-1">criar receita</button>
+                        </div>
 
-                <div className = "mt-2 is-flex  is-align-self-center  is-flex-direction-row is-justify-content-center is-align-content-center is-align-items-center">
-                    <button onClick = {atu} className ="button is-normal is-warning mx-1">atualizar usuario</button>
-                    <button onClick = {deletar} className ="button is-normal is-danger mx-1">deletar usuario</button>
-                </div>
+                        <div className = "mt-2 is-flex  is-align-self-center  is-flex-direction-row is-justify-content-center is-align-content-center is-align-items-center">
+                            <button onClick = {atu} className ="button is-normal is-warning mx-1">atualizar usuario</button>
+                            <button onClick = {deletar} className ="button is-normal is-danger mx-1">deletar usuario</button>
+                        </div>
 
-                <button onClick = {deslog} className = "mt-2 button is-info is-normal mx-1">Deslogar</button>
-            </div>
-            </div>
-            {atualizacao}
+                        <button onClick = {deslog} className = "mt-2 button is-info is-normal mx-1">Deslogar</button>
+                    </div>
+                    </div>
+                    {atualizacao}
+                    {addReceita}
+                </div>
+                :
+                <ReceitasUsuario id = {id} />
+            }
+            
         </>
     )
 }

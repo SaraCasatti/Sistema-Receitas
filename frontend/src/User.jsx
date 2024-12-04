@@ -24,7 +24,7 @@ function User(props) {
             </div>
         )
     } else if(lc == 3) {
-        mensagem = (<PagUser usuario = {usuario} id = {id} setUsuario = {setUsuario} setId = {setId} setLc = {setLc}/>)
+        mensagem = (<PagUser setDados = {props.setDados} dados = {props.dados} usuario = {usuario} id = {id} setUsuario = {setUsuario} setId = {setId} setLc = {setLc}/>)
     }
     
 
@@ -141,7 +141,6 @@ function LoginCadastro(props) {
                         <button onClick = {voltar} className ="button is-success is-outlined is-normal mx-1">Voltar</button>
                     </div>
                 </form>
-                
             </div>
         </>
     )

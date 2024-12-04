@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Receita(props) {
     let receita = props.receita
@@ -58,19 +58,17 @@ function Receita(props) {
 }
 
 function Ingredientes(props) {
-    const [estado, setEstado] = useState(0)
+
     const [ingredientes, setIngredientes] = useState([])
 
-    async function buscarDados() {
-        const resp = await fetch(`http://localhost:8000/receita_ingredientes/${props.id}`)
-        const dados = await resp.json()
-        setIngredientes(dados)
-        setEstado(true)
-    }
-
-    if (!estado) {
-        buscarDados()
-    }
+    useEffect(() => {
+        async function buscarDados() {
+            const resp = await fetch(`http://localhost:8000/receita_ingredientes/${props.id}`);
+            const dados = await resp.json();
+            setIngredientes(dados);
+        }
+        buscarDados();
+    }, [props.id]);
 
     return(
         <div className='content'> 

@@ -97,7 +97,7 @@ async function inserirReceita(receita) {
     let conn = await conecta()
     let sql = "insert into receitas(id_usuario, nome, categoria, modo_preparo, tempo) values (?, ?, ?, ?, ?)"
     let resp = await conn.query(sql, [receita.id_usuario, receita.nome, receita.categoria, receita.modo_preparo, receita.tempo])
-    console.log(resp[0])
+    console.log("resp:",resp)
     return resp[0]
 }
 
